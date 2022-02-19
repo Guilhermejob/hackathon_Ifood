@@ -13,6 +13,19 @@ class InvalidIdValueError(Exception):
         }
         super().__init__(self.message)
 
+
+class InvalidTypeError(Exception):
+    def __init__(self,expect:dict) -> None:
+        self.message = {
+            "message": {
+                "detail":"the request must be in the following format",
+                "expect":f"{expect}"            
+                }
+
+        }
+        super().__init__(self.message)
+
+
 class InvalidDataError(Exception):
     data_types = {
         str:"string",

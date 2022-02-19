@@ -5,7 +5,6 @@ from sqlalchemy.sql.schema import ForeignKey
 
 @dataclass
 class IngredientModel(db.Model):
-    id:int
     product:str
     quantity:int
 
