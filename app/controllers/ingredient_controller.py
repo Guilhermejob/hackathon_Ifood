@@ -1,7 +1,7 @@
 from flask import request,current_app,jsonify
 from app.models.ingredients_model import IngredientModel
 from app.models.recipe_model import RecipeModel
-from app.utils import check_user,check_data
+from app.utils import check_data
 from app.exceptions import InvalidDataError
 
 
@@ -28,5 +28,5 @@ def create_ingredient():
     session.add(ingredient)
     session.commit()
 
-    return jsonify(ingredient),201
+    return jsonify({"msg":"successfully created", "data":ingredient}),201
 

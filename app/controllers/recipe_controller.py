@@ -1,7 +1,7 @@
 from flask import request,current_app,jsonify
 from app.models.recipe_model import RecipeModel
 from app.utils import check_user,check_data
-from app.exceptions import NotFoundError,InvalidKeyValueError,InvalidDataError
+from app.exceptions import NotFoundError,InvalidIdValueError,InvalidDataError
 
 
 def create_recipe():
@@ -11,7 +11,7 @@ def create_recipe():
     try:
         data = check_data(body,RecipeModel.mandatory_data)
         data["name"] = data["name"].title()
-         
+
     except InvalidDataError as err:
         return jsonify(err.message),400
 
@@ -20,7 +20,7 @@ def create_recipe():
     session.add(recipe)
     session.commit()
 
-    return jsonify(recipe),201
+    return jsonify({"msg":"successfully created", "data":recipe}),201
 
 
 def list_recipes():
@@ -36,7 +36,7 @@ def get_recipe(id):
 
     except NotFoundError as error:
         return jsonify(error.message),404
-    except InvalidKeyValueError as error:
+    except InvalidIdValueError as error:
         return jsonify(error.message),400
 
     return jsonify(recipe.serialize()),200

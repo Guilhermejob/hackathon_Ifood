@@ -1,9 +1,9 @@
-from app.exceptions import InvalidKeyValueError,NotFoundError,InvalidDataError
+from app.exceptions import NotFoundError,InvalidDataError, InvalidIdValueError
 
 
 def check_user(id, model, send_type: str):
     if type(id) != int:
-        raise InvalidKeyValueError()
+        raise InvalidIdValueError()
 
     user = model.query.get(id)
 

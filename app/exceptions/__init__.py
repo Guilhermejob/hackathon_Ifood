@@ -6,7 +6,7 @@ class NotFoundError(Exception):
         super().__init__(self.message)
 
 
-class InvalidKeyValueError(Exception):
+class InvalidIdValueError(Exception):
     def __init__(self) -> None:
         self.message = {
             "message": "id must be an integer"
