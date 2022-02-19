@@ -1,7 +1,7 @@
 from app.configs.database import db
 from dataclasses import dataclass
 from sqlalchemy import Column, Integer, String
-from sqlalchemy.orm import relationship, backref
+from sqlalchemy.orm import relationship
 
 
 @dataclass
@@ -14,5 +14,17 @@ class SupermarketModel(db.Model):
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False, unique=True)
     products = relationship(
-        "ProductModel", backref=backref("supermarket", uselist=False))
+        "ProductModel", backref="supermarket", uselist=True)
+
+    mandatory_data = {
+        "name":str,
+    }
+
+
+    def serialize(self):
+        return {
+            "id":self.id,
+            "name":self.name,
+            "products_list":[{"id":product.id,"name": product.name, "price":product.price} for product in self.products]
+        }
 

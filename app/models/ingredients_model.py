@@ -5,7 +5,6 @@ from sqlalchemy.sql.schema import ForeignKey
 
 @dataclass
 class IngredientModel(db.Model):
-    id:int
     product:str
     quantity:int
 
@@ -13,6 +12,20 @@ class IngredientModel(db.Model):
 
     id = Column(Integer, primary_key=True)
     product = Column(String, nullable=False)
-    quantity = Column(Integer,default=1)
+    quantity = Column(String,default='não especificado')
 
     recipe_id = Column(Integer,ForeignKey('recipes.id'))
+
+    mandatory_data = {
+        "product":str,
+        "quantity":str,
+        "recipe":str
+    }
+
+    def serialize(self):
+        return{
+            "ingredientId":self.id,
+            "product":self.product,
+            "quantity":self.quantity,
+            "recipe":self.recipe
+        }

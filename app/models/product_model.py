@@ -4,8 +4,6 @@ from sqlalchemy import Column, Integer, String, Float
 from sqlalchemy.sql.schema import ForeignKey
 
 
-
-
 @dataclass
 class ProductModel(db.Model):
     id:int
@@ -16,7 +14,8 @@ class ProductModel(db.Model):
     __tablename__ = 'products'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String, nullable=False, unique=True)
+    name = Column(String, nullable=False)
     price = Column(Float, nullable=False)
     super_market_id  = Column(Integer, ForeignKey(
         'supermarkets.id'))
+
