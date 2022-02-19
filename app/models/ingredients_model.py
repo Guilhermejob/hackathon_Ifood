@@ -16,3 +16,11 @@ class IngredientModel(db.Model):
     quantity = Column(Integer,default=1)
 
     recipe_id = Column(Integer,ForeignKey('recipes.id'))
+
+    def serialize(self):
+        return{
+            "ingredientId":self.id,
+            "product":self.product,
+            "quantity":self.quantity,
+            "recipe":self.recipe
+        }

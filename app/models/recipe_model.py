@@ -16,3 +16,11 @@ class RecipeModel(db.Model):
     method_of_preparation = Column(String,nullable=False)
 
     ingredients = relationship("IngredientModel",backref="recipe",uselist=True)
+
+    def serialize(self):
+        return{
+            "recipeId":self.id,
+            "name":self.name,
+            "method_of_preparation":self.method_of_preparation,
+            "ingredients":self.ingredients
+        }
