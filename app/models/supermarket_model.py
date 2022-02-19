@@ -25,6 +25,6 @@ class SupermarketModel(db.Model):
         return {
             "id":self.id,
             "name":self.name,
-            "products_list":[{"id":product.id,"name": product.name} for product in self.products]
+            "products_list":[{"id":product.id,"name": product.name, "price":product.price} for product in self.products]
         }
 
