@@ -13,9 +13,15 @@ class IngredientModel(db.Model):
 
     id = Column(Integer, primary_key=True)
     product = Column(String, nullable=False)
-    quantity = Column(Integer,default=1)
+    quantity = Column(String,default='não especificado')
 
     recipe_id = Column(Integer,ForeignKey('recipes.id'))
+
+    mandatory_data = {
+        "product":str,
+        "quantity":str,
+        "recipe":str
+    }
 
     def serialize(self):
         return{
