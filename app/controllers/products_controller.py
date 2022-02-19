@@ -22,8 +22,16 @@ def register_product():
     return jsonify({"msg":"successfully created", "data":product}),201
 
 
+def get_product_by_name(name):
+    product_list:list[ProductModel] = ProductModel.query.filter(ProductModel.name.ilike(f"%{name}%")).all()
 
+    response = [{
+        "name": product.name,
+        "price": product.price,
+        "supermarket": product.supermarket
+    } for product in product_list]
 
+    return jsonify(response),200
 
 
 
