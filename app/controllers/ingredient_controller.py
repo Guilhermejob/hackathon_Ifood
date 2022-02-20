@@ -7,7 +7,7 @@ from app.exceptions import InvalidDataError,InvalidTypeError
 
 
 
-def create_ingredient(body):
+def create_one_ingredient():
     session = current_app.db.session
 
     body = request.get_json()
