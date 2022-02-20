@@ -1,11 +1,10 @@
-#### Primeira versão 
+#### Primeira versão
 
 # House Chef V1
 
 ## Documentação
 
 #
-
 
 ### O problema a ser solucionado
 
@@ -45,13 +44,13 @@ $ pip install -r requirements.txt
 
   - Não esqueça de criar o seu banco de dados e adicionar no .env
 
-- Crie as tabelas no banco de dados através do comando
+- Crie as tabelas no banco de dados através do comando:
 
 ```
 $ flask db upgrade
 ```
 
-- Inicie a aplicação local através do comando
+- Inicie a aplicação local através do comando:
 
 ```
 $ flask run
@@ -68,41 +67,79 @@ $ flask run
  * Debugger PIN: 112-925-941
 ```
 
+## (Opcional) Rodando o banco de dados em um container
+
+- Você também pode rodar o PostgreSQL em um container do docker. Para isso atribua as seguintes variáveis e seus valores ao arquivo _.env_ conforme o exemplo dado em _.env.example_:
+
+  - POSTGRES_DB
+  - POSTGRES_USER
+  - POSTGRES_PASSWORD
+
+- Execute o seguinte comando para criar e rodar o container:
+
+```
+docker-compose up
+```
+
+- Crie as tabelas no banco de dados do container através do comando:
+
+```
+$ flask db upgrade
+```
+
+- Inicie a aplicação local através do comando:
+
+```
+$ flask run
+```
+
+- A aplicação inicializará na rota http://127.0.0.1:5000/
+
+- Para encerrar o container use:
+
+```
+docker-compose down
+```
+
+- #### Obs: ao encerrar o container todos os dados gravados no banco de dados dele serão perdidos.
+
 #
 
 ## Tecnologias usadas
- - Python
- - Flask
- - SQALAlchemy
- - Postgresql
- - ORM
+
+- Python
+- Flask
+- SQALAlchemy
+- Postgresql
+- ORM
+- Docker
 
 ## Documentação das rotas e retornos
 
 ### Registrando Super mercado
+
 #### POST /supermarkets
 
 <div align="center">
 <img src="https://user-images.githubusercontent.com/80132755/154846098-65e4e4c8-10f2-4f30-8438-8453c382be90.png" width="700px" />
 </div>
 
-
 #
 
 ### Listando mercado por id
-#### GET /supermarkets/<id:int>
 
+#### GET /supermarkets/<id:int>
 
 <div align="center">
 <img src="https://user-images.githubusercontent.com/80132755/154846233-599f0347-c8ab-41cb-8812-69bcecbe474e.png" width="700px" />
 </div>
-
 
 > #### OBS : O "id" na rota é referente ao id do supermercado que deseja procurar, caso você passe um id que não exista, ele irá dar erro
 
 #
 
 ### Registrando produto
+
 #### POST /products
 
 <div align="center">
@@ -113,7 +150,8 @@ $ flask run
 
 #
 
-### Listando produtos por nome  
+### Listando produtos por nome
+
 #### GET /products/<name:str>
 
 <div align="center">
@@ -123,6 +161,7 @@ $ flask run
 #
 
 ### Listando produtos da receita
+
 #### GET /recipe/<id:int>/products
 
 <div align="center">
@@ -134,6 +173,7 @@ $ flask run
 #
 
 ### Registrando receita
+
 #### POST /recipe
 
 <div align="center">
@@ -143,6 +183,7 @@ $ flask run
 #
 
 ### Listanto receita por nome
+
 #### POST /recipe/<name:str>
 
 <div align="center">
@@ -152,6 +193,7 @@ $ flask run
 #
 
 ### Registrando ingredientes na receita
+
 #### POST /ingredient/list
 
 <div align="center">
@@ -168,10 +210,3 @@ $ flask run
 
 - [Guilherme Job](https://www.linkedin.com/in/guilherme-armesto-job/)
 - [Miqueias Carvalho](https://www.linkedin.com/in/miqueias-carvalho-dos-santos/)
-
-
-
-
-
-
-
