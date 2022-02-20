@@ -40,3 +40,11 @@ def get_recipe(id):
         return jsonify(error.message),400
 
     return jsonify(recipe.serialize()),200
+
+
+def get_recipes_by_name(name):
+    recipe_list:list[RecipeModel] = RecipeModel.query.filter(RecipeModel.name.ilike(f"%{name}%")).all()
+
+    response = [recipe.serialize() for recipe in recipe_list]
+
+    return jsonify(response),200
